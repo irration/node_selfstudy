@@ -1,8 +1,9 @@
 const request = require('request');
 const yargs = require('yargs');
+const fs = require('fs');
 
 // 1301 lombard street
-const argv = yargs
+/*const argv = yargs
   .options({
   	a: {
   	  demand: true,
@@ -13,10 +14,13 @@ const argv = yargs
   })
   .help()
   .argv;
+*/
+//console.log(argv);
 
-console.log(argv);
-var encodedAddress = encodeURIComponent(argv.address);
+var api_key_file = JSON.parse(fs.readFileSync('./api_key.json', 'utf-8'));
 
+//var encodedAddress = encodeURIComponent(argv.address);
+/*
 request({
 	url: `http://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}`,
 	json: true
@@ -31,3 +35,4 @@ request({
 	  console.log(response);
 	}
 });
+*/
