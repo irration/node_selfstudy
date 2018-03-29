@@ -18,21 +18,16 @@ const fs = require('fs');
 //console.log(argv);
 
 var api_key_file = JSON.parse(fs.readFileSync('./api_key.json', 'utf-8'));
+var api_key = api_key_file.key;
+var url = `https://api.darksky.net/forecast/${api_key}/37.8267,-122.4233`;
 
-//var encodedAddress = encodeURIComponent(argv.address);
-/*
 request({
-	url: `http://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}`,
+	url: url,
 	json: true
 }, (error, response, body) => {
-	if (error) {
-	  console.log('Unable to connect to Google servers.');
-	} else if (body.status === 'ZERO_RESULTS') {
-	  console.log('Unable to find that address.');
-	} else if (body.status === 'OK') {
-	  console.log(body.results[0].formatted_address);
+	if (!error && response.statusCode === 200) {
+		console.log(body.currently.temperature);
 	} else {
-	  console.log(response);
+		console.log('Unable to fetch weather.');
 	}
 });
-*/
